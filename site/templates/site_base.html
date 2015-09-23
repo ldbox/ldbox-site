@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load waliki_tags %}
+
+{% block head_title_base %}{% if page and page.title %} {{ page.title }} | {% endif %}ldbox{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="navbar-header"><a href="{% url 'waliki_home' %}" class="navbar-brand">ldbox</a></div>
+                        <ul class="nav navbar-nav waliki-nav">
+                        <li><a href="/motivation">{% trans "Why ldbox?" %}</a></li>
+                        <li><a href="/basics">{% trans "Basic Concepts" %}</a></li>
+                        <li><a href="/howto">{% trans "HowTo" %}</a></li>
+                        <li><a href="https://github.com/ldbox/ldbox">{% trans "Development" %}</a></li>
+                        </ul>
+                        {% if user.is_authenticated %}
+                        {% navbar_links %}
+                        <ul class="nav navbar-nav waliki-nav">
+                        {% if page %}
+                        {% entry_point 'detail_actions' %}
+                        <li><a href="{% url 'waliki_edit' slug=page.slug|default:slug %}">{% trans "Edit" %}</a></li>
+                        <li><a href="{% url "waliki_detail_raw" page.slug %}">{% trans "Raw" %}</a></li>
+                        {% check_perms "delete_page" for request.user in page.slug as "can_delete" %}
+                        {% if can_delete %}
+                        <li><a id="btn-waliki_delete" class="text-error" href="{% url 'waliki_delete' page.slug %}">{% trans "Delete" %}</a></li>
+                        {% endif %}
+                        {% extra_page_actions page %}
+                        {% endif %}
+                        <li class="divider"></li>
+                        <li class="pull-right"><a id="btn-ldbox_logout" href="{% url 'logout' %}?next={{ request.get_full_path|urlencode }}">{% trans "Logout" %}</a></li>
+                        </ul>
+                        {% else %}
+                        <ul class="nav navbar-nav waliki-nav">
+                        <li class="divider"></li>
+                        <li class="pull-right"><a id="btn-ldbox_login" href="{% url 'login' %}?next={{ request.get_full_path|urlencode }}">{% trans "Login" %}</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="login-form" method="post" class="form" action="{% url 'django.contrib.auth.views.login' %}">
+      {% csrf_token %}
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans "Cancel" %}</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans "Administrator Login" %}</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <input id='btn-login-submit' class="btn btn-success" value="{% trans "Login" %}" type="submit">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block body %}
+  <div class="row">
+
+      <div class="col-lg-offset-1 col-sm-10 col-md-10">
+          {% if page and page.title %}
+          <div class="page-header">
+             <h1>{% block title %}{{ page.title }}{% endblock title %}</h1>
+          </div>
+          {% endif %}
+
+     {% block content %}
+     {% endblock content %}
+
+      {% block extra_content %}{% endblock extra_content %}
+      </div>
+
+  </div>
+{% endblock body %}
+
+{% block script_base %}
+{{ block.super }}
+<script src="{% static 'js/ldbox.js'%}"></script>
+{% endblock %}
