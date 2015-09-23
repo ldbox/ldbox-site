@@ -1,5 +1,5 @@
 This is `ldbox.site`, Python package with Django project for
-[https://ldbox.org/](ldbox.org site).
+[`ldbox.org` site](https://ldbox.org/).
 
 This package in licensed under AGPL 3 license.
-See [COPYING](COPYING file) for license text.
+See [COPYING file](COPYING) for license text.
