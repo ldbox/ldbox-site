@@ -127,6 +127,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+SENDFILE_BACKEND = 'sendfile.backends.simple'
+
 # Authentication settings
 
 LOGIN_REDIRECT_URL = '/'
