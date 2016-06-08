@@ -135,7 +135,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # Waliki settings
 
-WALIKI_DATA_DIR = '/var/lib/waliki/data'
+WALIKI_DATA_DIR = '/var/lib/waliki/ldbox/data'
 
 WALIKI_DEFAULT_MARKUP = 'Markdown'
 
@@ -143,7 +143,7 @@ WALIKI_COMMITTER_EMAIL = 'nobody@ldbox.org'
 
 WALIKI_COMMITTER_NAME = 'Anonymous'
 
-WALIKI_ATTACHMENTS_DIR = '/var/lib/waliki/attachments'
+WALIKI_ATTACHMENTS_DIR = '/var/lib/waliki/ldbox/attachments'
 
 WALIKI_LOGGED_USER_PERMISSIONS = (
     'view_page',
