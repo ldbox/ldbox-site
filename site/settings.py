@@ -47,11 +47,13 @@ from .localsecrets import LDBOX_DATABASE_PORT
 SECRET_KEY = LDBOX_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+ADMINS = [('ldbox site admin', 'webmaster@ldbox.org')]
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ldbox.org', '.ldbox.eu', '.ldbox.bit']
 
 
 # Application definition
@@ -126,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/vhosts/ldbox.org/html/static'
 
 SENDFILE_BACKEND = 'sendfile.backends.simple'
 
