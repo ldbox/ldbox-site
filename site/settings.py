@@ -106,9 +106,9 @@ DATABASES = {
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as CP
 
-TEMPLATE_CONTEXT_PROCESSORS = CP + (
+TEMPLATE_CONTEXT_PROCESSORS = CP + [
     'django.core.context_processors.request',
-)
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
