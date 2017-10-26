@@ -67,7 +67,7 @@
 <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form id="login-form" method="post" class="form" action="{% url 'django.contrib.auth.views.login' %}">
+      <form id="login-form" method="post" class="form" action="{% url 'login' %}">
       {% csrf_token %}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{% trans "Cancel" %}</span></button>

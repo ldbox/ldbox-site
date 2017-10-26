@@ -102,12 +102,17 @@ DATABASES = {
     }
 }
 
-# Context processors
-
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as CP
-
-TEMPLATE_CONTEXT_PROCESSORS = CP + [
-    'django.core.context_processors.request',
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates')),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': ['django.template.context_processors.request']
+        }
+    },
 ]
 
 # Internationalization
