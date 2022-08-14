@@ -20,6 +20,7 @@ from django.conf.urls import include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.contrib import admin
+from django.urls import path
 admin.autodiscover()
 
 urlpatterns = [
@@ -27,7 +28,7 @@ urlpatterns = [
     # url(r'^$', 'ldbox.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    path('admin/', admin.site.urls),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('waliki.urls')),
 ]
