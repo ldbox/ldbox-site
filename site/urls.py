@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU Affero Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, re_path, path
 admin.autodiscover()
 
 urlpatterns = [
@@ -29,8 +28,8 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     path('admin/', admin.site.urls),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^', include('waliki.urls')),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
+    re_path(r'^', include('waliki.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
